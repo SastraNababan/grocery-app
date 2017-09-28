@@ -1,3 +1,2 @@
-# React Native Starter kit
-
-React Native Starter Kit With Redux,Nativebase, ReactNavigation
+# Grocery App
+Built with React Native
