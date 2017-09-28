@@ -1,23 +1,39 @@
+import Expo from 'expo';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import {View } from 'react-native'
+import {StyleProvider} from 'native-base'
+import {Provider } from 'react-redux'
+import getTheme from './theme/components'
+import configureStore from './store'
+import AppNavigator from './AppNavigator'
+
+const store = configureStore()
 
 export default class App extends React.Component {
+  state = {
+    isReady: false,
+  }
+
+  async componentWillMount() {
+    await Expo.Font.loadAsync({
+      'Roboto': require('native-base/Fonts/Roboto.ttf'),
+      'Roboto_medium': require('native-base/Fonts/Roboto_medium.ttf'),
+      'Ionicons': require('native-base/Fonts/Ionicons.ttf'),
+    });
+  } 
   render() {
+    const themeState='material'
+    // if (!this.state.isReady) {
+    //   return <Expo.AppLoading />
+    // }
     return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
-      </View>
+      <StyleProvider style={getTheme((themeState === 'platform') ? material : undefined)}>
+        <Provider store={store}>
+          <AppNavigator onNavigationStateChange={null} />
+        </Provider>
+      </StyleProvider>  
     );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+
