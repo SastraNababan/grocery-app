@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import {Platform} from 'react-native'
 import {StackNavigator} from 'react-navigation'
-import IndexScreen from './screens/index'
+import StoreScreen from './screens/store'
 import OtherScreen from './screens/other'
 
  
 const Navigator = StackNavigator(
   {
-    IndexScreen: { screen: IndexScreen},
+    StoreScreen: { screen: StoreScreen},
     OtherScreen: { screen: OtherScreen},
   },
 {
-    initialRouteName: 'IndexScreen',
+    initialRouteName: 'StoreScreen',
     headerMode: 'none', 
     mode: Platform.OS === 'ios' ? 'modal' : 'card',
   }
