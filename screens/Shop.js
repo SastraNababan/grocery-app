@@ -1,18 +1,26 @@
 import React, { Component } from 'react'
 import { View,StyleSheet,Dimensions } from 'react-native'
-import {Container,Header,Content,Body,Text,H1,Button,Tab, Tabs,ScrollableTab} from 'native-base'
+import {Container,Header,Content,Body,Text,H1,Button,Tab, Tabs,ScrollableTab,Item,Icon,Input,Left,Right,Title} from 'native-base'
 import { connect } from 'react-redux';
 import {sampleAction} from '../store/actions'
 import ProductList from '../components/ProductList'
-import products from '../data/products'
+import products from '../database/products'
 import Tab1 from '../screens/Tab1'
 import Tab2 from '../screens/Tab2'
+import axios from 'axios'
 
 
-
-class StoreScreen extends Component {
+class ShopScreen extends Component {
   state = {  }
-
+  // static navigationOptions = ({ navigation }) => ({
+  //   title: `Chat with ${navigation.state.contact}`,
+  // });
+  componentWillMount() {
+    const { state} = this.props.navigation;
+    contact = state.params.contact;
+  //  console.log(state)
+   console.log(contact)
+  }
   render() {
     // console.log(Dimensions);
     const dim=Dimensions.get('screen')
@@ -21,10 +29,36 @@ class StoreScreen extends Component {
     const {navigate} = this.props.navigation;
     return (
       <Container>
-        <Header hasTabs>
+        <Header searchBar rounded>
+          <Left>
+            <Button transparent>
+            <Icon name="ios-menu"/>
+            </Button>
+          </Left>
           <Body>
-            <Text>Store</Text>
+          <Title>Shop</Title>
           </Body>
+          <Right>
+            <Button transparent>
+              <Icon name="ios-search"/>
+            </Button>
+            <Button transparent>
+              <Icon name="ios-cart"/>
+            </Button>
+
+          </Right>
+          
+          {/* <Item>
+            <Icon name="ios-search" />
+            <Input placeholder="Search" />
+           
+          </Item> */}
+          
+          {/* <Body>
+            <Icon name="ios-cart"/>
+          </Body> */}
+          {/* <Body>
+          </Body> */}
         </Header>
         <Content >
           <Tabs initialPage={0} renderTabBar={()=> <ScrollableTab />}>
@@ -63,4 +97,4 @@ const mapDispatchToProps ={
   sampleAction,
 }
 // export default connect(mapStateToProps)(IndexScreen);
-export default connect(mapStateToProps,mapDispatchToProps)(StoreScreen);
+export default connect(mapStateToProps,mapDispatchToProps)(ShopScreen);
