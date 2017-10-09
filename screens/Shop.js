@@ -1,37 +1,37 @@
 import React, { Component } from 'react'
-import { View,StyleSheet,Dimensions } from 'react-native'
+import { View,StyleSheet,Dimensions,Image,ScrollView } from 'react-native'
 import {Container,Header,Content,Body,Text,H1,Button,Tab, Tabs,ScrollableTab,Item,Icon,Input,Left,Right,Title} from 'native-base'
 import { connect } from 'react-redux';
 import {sampleAction} from '../store/actions'
-import ProductList from '../components/ProductList'
+import ProductGrid from '../components/ProductGrid'
 import products from '../database/products'
 import Tab1 from '../screens/Tab1'
 import Tab2 from '../screens/Tab2'
-import axios from 'axios'
-
+import {promo,categories} from '../database'
 
 class ShopScreen extends Component {
   state = {  }
-  // static navigationOptions = ({ navigation }) => ({
-  //   title: `Chat with ${navigation.state.contact}`,
-  // });
-  componentWillMount() {
-    const { state} = this.props.navigation;
-    contact = state.params.contact;
-  //  console.log(state)
-   console.log(contact)
+ 
+  renderCategoriesTab(categories){
+    return (
+      categories.map((category,index) => (
+        <Tab key={index} heading={category.name}>
+          <ProductGrid products={products}/>
+        </Tab>
+      ))
+    )
   }
+
   render() {
-    // console.log(Dimensions);
     const dim=Dimensions.get('screen')
     const {scale,height,width,fontScale} = dim
-    console.log(scale,width,height,fontScale);
+    // console.log(scale,width,height,fontScale);
     const {navigate} = this.props.navigation;
     return (
       <Container>
-        <Header searchBar rounded>
+        <Header searchBar rounded hasTabs>
           <Left>
-            <Button transparent>
+            <Button transparent onPress={ () => navigate('DrawerOpen')}>
             <Icon name="ios-menu"/>
             </Button>
           </Left>
@@ -45,34 +45,26 @@ class ShopScreen extends Component {
             <Button transparent>
               <Icon name="ios-cart"/>
             </Button>
-
           </Right>
-          
-          {/* <Item>
-            <Icon name="ios-search" />
-            <Input placeholder="Search" />
-           
-          </Item> */}
-          
-          {/* <Body>
-            <Icon name="ios-cart"/>
-          </Body> */}
-          {/* <Body>
-          </Body> */}
         </Header>
-        <Content >
+        <Content>
           <Tabs initialPage={0} renderTabBar={()=> <ScrollableTab />}>
-            <Tab heading="Fresh Fruites">
-              <ProductList products={products}/>
-            </Tab>
-            <Tab heading="Kitchen Products">
-              <Tab2 />
-            </Tab>
-            <Tab heading="Kids and Mom">
-              <Tab1 />
-            </Tab>
+            {this.renderCategoriesTab(categories)}
           </Tabs>
-          {/* <ProductList products={products}/> */}
+          {/* <ScrollView horizontal={true}>
+            <Button light>
+              <Icon name="ios-cart"/>
+              <Text>Category 1</Text>
+            </Button>
+            <Button><Text>Category 2</Text></Button>
+            <Button><Text>Category 3</Text></Button>
+            <Button><Text>Category 4</Text></Button>
+            <Button><Text>Category 5</Text></Button>
+          </ScrollView> */}
+
+
+
+          <ProductGrid products={products}/>
         </Content>
       </Container>
       

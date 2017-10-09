@@ -1,4 +1,8 @@
 export default [{
+  "id": 0,
+  "name": "All",
+  "picture": "http://farm5.staticflickr.com/4451/37529849061_ee54224e76_b.jpg"
+},{
   "id": 1,
   "name": "Fresh Vegetables",
   "picture": "http://farm5.staticflickr.com/4451/37529849061_ee54224e76_b.jpg"

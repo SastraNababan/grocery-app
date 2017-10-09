@@ -1,83 +1,120 @@
-import React, { Component } from 'react'
-import { View,StyleSheet,Dimensions,ScrollView} from 'react-native'
-import {Header,Body,Container,Content,Footer,FooterTab, Button,Text,Title,Icon,Left,Right,Card} from 'native-base'
-import {ListPanel,Swiper,SwiperProductThumb,Grid,GridProductThumb} from '../components'
-const { width,height } = Dimensions.get('window')
-import homeData from '../database/home'
-import promo from '../database/promo'
-import categories from '../database/categories'
+import React, {Component} from 'react'
+import {View, StyleSheet, Dimensions, ScrollView,Image} from 'react-native'
+import { DrawerNavigator } from 'react-navigation';
+import {
+  Header,
+  Body,
+  Container,
+  Content,
+  Footer,
+  FooterTab,
+  Button,
+  Text,
+  Title,
+  Icon,
+  Left,
+  Right,
+  Card
+} from 'native-base'
 
+import {
+  Panel,
+  Swiper,
+  SwiperProductThumb,
+  Grid,
+  GridProductThumb
+} from '../components'
+
+import {promo,categories} from '../database'
+
+const {width, height} = Dimensions.get('window')
+const MyNavScreen = ({ navigation, banner }) => (
+  <ScrollView style={styles.container}>
+    {/* <SampleText>{banner}</SampleText> */}
+    <Button
+      onPress={() => navigation.navigate('DrawerOpen')}
+      title="Open drawer"
+    />
+    <Button onPress={() => navigation.goBack(null)} title="Go back" />
+  </ScrollView>
+);
+ 
 
 export default class Home extends Component {
-  state = {  }
+  state = {}
+  static navigationOptions = {
+    drawerLabel: 'Home',
+    drawerIcon: ({ tintColor }) => (
+      <Icon name='ios-cart'></Icon>
+    ),
+  };
 
-  renderPromo(data){
+  renderPromo(data) {
+    const {navigate} = this.props.navigation
     return (
-      <ListPanel title="Promo" description="Today Promo">
+      <Panel
+        title="Promo"
+        description="Today Promo"
+        onPressSeeAll={() => navigate('ShopScreen')}>
         <Swiper>
-        {
-          data.map((item, idx) => {
+          {data.map((item, idx) => {
             return <SwiperProductThumb key={idx} { ...item }/>
           })
-        }
+          }
         </Swiper>
-      </ListPanel>
+      </Panel>
     )
   }
 
-  renderCategories(data){
+  renderCategories(data) {
     return (
-      <ListPanel title="Categories" description="">
+      <Panel title="Categories" description="">
         <Grid>
-          {
-            data.map((item, id) => {
-                return <GridProductThumb key={id} { ...item }/>
-            })
+          {data.map((item, id) => {
+            return <GridProductThumb key={id} { ...item }/>
+          })
           }
         </Grid>
-      </ListPanel>
+      </Panel>
     )
   }
 
   render() {
-    const { navigate } = this.props.navigation
+    const {navigate} = this.props.navigation
     return (
       <Container>
         <Header searchBar rounded>
-        <Left>
-          <Button transparent>
-          <Icon name="ios-menu"/>
-          </Button>
-        </Left>
-        <Body>
-        <Title>Grocery App</Title>
-        </Body>
-        <Right>
-          <Button transparent>
-            <Icon name="ios-search"/>
-          </Button>
-          <Button transparent>
-            <Icon name="ios-cart"/>
-          </Button>
-        </Right>
-        
+          <Left>
+            <Button transparent onPress={ () => navigate('DrawerOpen')}>
+              <Icon name="ios-menu"/>
+            </Button>
+          </Left>
+          <Body>
+            <Title>Grocery UI</Title>
+          </Body>
+          <Right>
+            <Button transparent>
+              <Icon name="ios-search"/>
+            </Button>
+            <Button transparent>
+              <Icon name="ios-cart"/>
+            </Button>
+          </Right>
+
         </Header>
         <Content>
-          {/* <View style={styles.slider}>
-            <Text>Promo Slider</Text>
-          </View> */}
+          <View style={styles.sliderHolder}>
+            {/* <Text>Promo Slider</Text> */}
+            <Image style={styles.sliderPicture}  source={{ uri: "http://res.cloudinary.com/oklae/image/upload/c_scale,w_500/v1507343728/grocery-app/slider/slider1.png"}}/>
+          </View>
 
-            {/* <Button onPress={() => navigate('ShopScreen',{contact: 'contact123'})}>
-              <Text>Test</Text>
-            </Button> */}
-          
           <ScrollView>
             <Card>
-            {this.renderPromo(promo)}
+              {this.renderPromo(promo)}
             </Card>
 
             <Card>
-            {this.renderCategories(categories)}
+              {this.renderCategories(categories)}
             </Card>
           </ScrollView>
 
@@ -101,20 +138,24 @@ export default class Home extends Component {
               <Text>Account</Text>
             </Button>
           </FooterTab>
-      </Footer>
+        </Footer>
       </Container>
 
     )
   }
 }
 
-const styles =StyleSheet.create({
-  slider :{
-    flex:1,
-    width:width,
-    height:height/4,
-    backgroundColor:"#CCC",
-    alignItems:"center",
-    justifyContent:"center"
+const styles = StyleSheet.create({
+  sliderHolder: {
+    // flex:1,
+    width: width,
+    height: height / 3,
+    // backgroundColor: "#CCC",
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  sliderPicture:{
+    width: width,
+    height: height / 3,
   }
 })

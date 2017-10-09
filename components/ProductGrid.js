@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { View,FlatList,Image,Dimensions,StyleSheet } from 'react-native';
 import { Container, Header, Content, Card, CardItem, Body, Text,Thumbnail,Button,Icon,Left,Right } from 'native-base';
-import ResponsiveImage from 'react-native-responsive-image';
-import FitImage from 'react-native-fit-image'
+// import ResponsiveImage from 'react-native-responsive-image';
+// import FitImage from 'react-native-fit-image'
 
 const {width, height, scale} = Dimensions.get("window"),
 vw = width / 100,
@@ -10,7 +10,7 @@ vh = height / 100,
 vmin = Math.min(vw, vh),
 vmax = Math.max(vw, vh);
 
-class ProductList extends Component {
+class ProductGrid extends Component {
   // state = {selected: (new Map(): Map<string, boolean>)};
   _renderItem = (item) =>(<ProductItem post={item}  />)
   _keyExtractor = (item,index) => item.id
@@ -31,7 +31,7 @@ class ProductList extends Component {
   }
 }
 
-export default ProductList;
+export default ProductGrid;
 
 
 class ProductItem extends React.PureComponent {
@@ -55,7 +55,7 @@ class ProductItem extends React.PureComponent {
   render() {
     const {title,price,picture}=this.props.post.item
     return (
-    <Card transparent  style={{flex: 1}}>
+    <Card style={{flex: 1}}>
       <CardItem>
         <Body>
           {/* source={{uri: 'http://urbanintel.com.au/wp-content/uploads/2015/03/placeholder-square.jpg',isStatic:true}}  */}
@@ -69,8 +69,9 @@ class ProductItem extends React.PureComponent {
             resizeMode="contain"
           /> */}
           <Image  
-          source={{uri:picture}}
-          style={styles.productItem} /> 
+            source={{uri:picture}}
+            style={styles.productItem} 
+          /> 
           <Text style={styles.productTitle}>{title}</Text>
           <Text style={styles.productPrice}>{price}</Text>
         </Body>
