@@ -32,16 +32,15 @@ const menus = [
 	},
 	{
 		name: "Checkout",
-		route: "HomeScreen",
+		route: "CheckoutScreen",
 		icon: "ios-arrow-round-forward",
 		bg: "#C5F442",
 	},
 	{
-		name: "Categories",
-		route: "HomeScreen",
+		name: "Cart",
+		route: "CartScreen",
 		icon: "ios-arrow-round-forward",
 		bg: "#477EEA",
-		types: "8",
 	},
 	{
 		name: "Footer",
@@ -68,9 +67,9 @@ class DrawerMenu extends Component {
 	}
 
   menuTextStyle(current){
-    if (!current){
-      return styles.menuTextActive
-    }
+    // if (!current){
+    //   return styles.menuTextActive
+    // }
     return styles.menuText
   }
 	render() {

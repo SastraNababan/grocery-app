@@ -1,9 +1,13 @@
 import React, { Component } from 'react'
 import { View,StyleSheet,Dimensions,Image,ScrollView } from 'react-native'
-import {Container,Header,Content,Body,Text,H1,Button,Tab, Tabs,ScrollableTab,Item,Icon,Input,Left,Right,Title} from 'native-base'
+import {Container,Header,Content,Body,Text,H1,Button,Tab, Tabs,ScrollableTab,Item,Icon,Input,Left,Right,Title,Footer} from 'native-base'
 import { connect } from 'react-redux';
 import {sampleAction} from '../store/actions'
-import ProductGrid from '../components/ProductGrid'
+import {
+  ProductGrid,
+  FooterTab,
+} from '../components'
+
 import products from '../database/products'
 import Tab1 from '../screens/Tab1'
 import Tab2 from '../screens/Tab2'
@@ -66,6 +70,9 @@ class ShopScreen extends Component {
 
           <ProductGrid products={products}/>
         </Content>
+        <Footer>
+          <FooterTab/>
+        </Footer>
       </Container>
       
     )

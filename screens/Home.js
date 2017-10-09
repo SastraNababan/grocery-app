@@ -7,7 +7,6 @@ import {
   Container,
   Content,
   Footer,
-  FooterTab,
   Button,
   Text,
   Title,
@@ -18,6 +17,7 @@ import {
 } from 'native-base'
 
 import {
+  FooterTab,
   Panel,
   Swiper,
   SwiperProductThumb,
@@ -120,24 +120,7 @@ export default class Home extends Component {
 
         </Content>
         <Footer>
-          <FooterTab>
-            <Button active>
-              <Icon name="ios-home"/>
-              <Text>Home</Text>
-            </Button>
-            <Button>
-              <Icon name="ios-cart"/>
-              <Text>Cart</Text>
-            </Button>
-            <Button>
-              <Icon name="ios-heart"/>
-              <Text>Favorite</Text>
-            </Button>
-            <Button>
-              <Icon name="ios-contact"/>
-              <Text>Account</Text>
-            </Button>
-          </FooterTab>
+          <FooterTab/>
         </Footer>
       </Container>
 
