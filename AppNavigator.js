@@ -5,6 +5,10 @@ import HomeScreen from './screens/Home'
 import ShopScreen from './screens/Shop'
 import CartScreen from './screens/Cart'
 import CheckoutScreen from './screens/Checkout'
+import PaymentScreen from './screens/Payment'
+import OrderSummaryScreen from './screens/OrderSummary'
+import OrderSuccessScreen from './screens/OrderSuccess'
+
 import {DrawerMenu} from './components/'
 
 // const Navigator = StackNavigator(routerConfig,
@@ -20,13 +24,16 @@ const routerConfig ={
   ShopScreen: { screen: ShopScreen},
   CartScreen: { screen: CartScreen},
   CheckoutScreen: { screen: CheckoutScreen},
+  PaymentScreen: { screen: PaymentScreen},
+  OrderSummaryScreen: { screen: OrderSummaryScreen},
+  OrderSuccessScreen: { screen: OrderSuccessScreen},
 
 }
 
 const Drawer = DrawerNavigator(
   routerConfig,
   {
-  initialRouteName: "CheckoutScreen",
+  initialRouteName: "OrderSuccessScreen",
   contentComponent: DrawerMenu,
   contentOptions: {
     activeTintColor: '#e91e63',

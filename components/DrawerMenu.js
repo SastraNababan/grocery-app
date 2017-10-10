@@ -42,13 +42,13 @@ const menus = [
 		icon: "ios-arrow-round-forward",
 		bg: "#477EEA",
 	},
-	{
-		name: "Footer",
-		route: "HomeScreen",
-		icon: "ios-arrow-round-forward",
-		bg: "#DA4437",
-		types: "4",
-	},
+	// {
+	// 	name: "Footer",
+	// 	route: "HomeScreen",
+	// 	icon: "ios-arrow-round-forward",
+	// 	bg: "#DA4437",
+	// 	types: "4",
+	// },
 	{
 		name: "Login",
 		route: "HomeScreen",

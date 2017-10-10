@@ -11,19 +11,19 @@ export default () => (
   <FooterTab>
     <Button active>
       <Icon name="ios-home"/>
-      <Text>Home</Text>
+      <Text bold>Home</Text>
     </Button>
     <Button>
       <Icon name="ios-cart"/>
-      <Text>Cart</Text>
+      <Text bold>Cart</Text>
     </Button>
     <Button>
       <Icon name="ios-heart"/>
-      <Text>Favorite</Text>
+      <Text bold>Favorite</Text>
     </Button>
     <Button>
       <Icon name="ios-contact"/>
-      <Text>Account</Text>
+      <Text bold>Account</Text>
     </Button>
   </FooterTab>
 )

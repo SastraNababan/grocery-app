@@ -49,7 +49,6 @@ export default class CheckoutScreen extends Component {
         </Header>
         <Content padder>
           <CheckoutStep currentPosition={0}/>
-
           <Card style={{borderWidth:0,borderColor:'transparent'}}>
             <CardItem header>
               <H3>Contact Detail</H3>
@@ -97,8 +96,8 @@ export default class CheckoutScreen extends Component {
               </Item>
             </Form>
           </Card>
-          <Button full style={{marginTop:20,marginBottom:20}}>
-            <Text>Next</Text>
+          <Button onPress={ () => navigate('PaymentScreen')} full style={{marginTop:20,marginBottom:20}}>
+            <Text bold>Next</Text>
             <Icon name="ios-arrow-round-forward"/>
           </Button>
         </Content>
