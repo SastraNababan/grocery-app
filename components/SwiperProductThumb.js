@@ -8,7 +8,7 @@ import {
   TouchableOpacity
 } from 'react-native'
 import {Text} from 'native-base'
-import theme from '../theme/variables/groceryTheme'
+import theme from '../theme/variables'
 
 const {width} = Dimensions.get('window')
 const prdWidth = (width - 45) / 2.5

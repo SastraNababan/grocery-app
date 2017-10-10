@@ -4589,6 +4589,10 @@ react-native-scripts@1.5.0:
     rimraf "^2.6.1"
     xdl "45.0.0"
 
+react-native-step-indicator@^0.0.6:
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/react-native-step-indicator/-/react-native-step-indicator-0.0.6.tgz#40b57b8b5704111979700ec4974239fa6e4b7546"
+
 react-native-svg@5.3.0:
   version "5.3.0"
   resolved "https://registry.yarnpkg.com/react-native-svg/-/react-native-svg-5.3.0.tgz#0d2ca98bee6726d627c2ca31617ac9c5f7d42daf"

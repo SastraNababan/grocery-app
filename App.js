@@ -4,7 +4,7 @@ import {View } from 'react-native'
 import {StyleProvider} from 'native-base'
 import {Provider } from 'react-redux'
 import getTheme from './theme/components'
-import groceryTheme from './theme/variables/groceryTheme'
+import theme from './theme/variables'
 
 
 import store from './store'
@@ -37,7 +37,7 @@ export default class App extends React.Component {
       return <Expo.AppLoading />
     }
     return (
-      <StyleProvider style={getTheme(groceryTheme)}>
+      <StyleProvider style={getTheme(theme)}>
         <Provider store={store}>
           <AppNavigator onNavigationStateChange={null} />
         </Provider>

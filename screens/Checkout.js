@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View,Image } from 'react-native'
+import { View,Image,StyleSheet } from 'react-native'
 import {Container,
   Header,
   Content,
@@ -20,10 +20,13 @@ import {Container,
   Grid,
   Col,
   Card,
-  CardItem
+  CardItem,
+  Form,
+  Label,
+  H3
 } from 'native-base'
-
- 
+import {CheckoutStep} from '../components'
+import theme from '../theme/variables'
 
 export default class CheckoutScreen extends Component {
   state = {  }
@@ -42,20 +45,72 @@ export default class CheckoutScreen extends Component {
           <Body>
           <Title>Checkout</Title>
           </Body>
-          <Right>
-            <Button transparent>
-              <Icon name="ios-search"/>
-            </Button>
-            <Button transparent>
-              <Icon name="ios-cart"/>
-            </Button>
-          </Right>
+          <Right/>
         </Header>
         <Content padder>
- 
+          <CheckoutStep currentPosition={0}/>
+
+          <Card style={{borderWidth:0,borderColor:'transparent'}}>
+            <CardItem header>
+              <H3>Contact Detail</H3>
+            </CardItem>
+            <Form>
+              <Item stackedLabel  style={{marginBottom:20,borderWidth:0}}>
+                <Label note style={{fontWeight:'bold',fontSize:12}}>FIRST NAME</Label>
+                <Input placeholder="First Name" />
+              </Item>
+              <Item stackedLabel style={{marginBottom:20}}>
+                <Label note style={{fontWeight:'bold',fontSize:12}}>LAST NAME</Label>
+                <Input placeholder="Last Name" />
+              </Item>
+              <Item stackedLabel style={{marginBottom:20}}>
+                <Label note style={{fontWeight:'bold',fontSize:12}}>EMAIL</Label>
+                <Input placeholder="Email Address" />
+              </Item>
+              <Item stackedLabel last style={{marginBottom:20,borderBottomColor:'transparent'}}>
+                <Label note style={{fontWeight:'bold',fontSize:12}}>PHONE</Label>
+                <Input placeholder="Phone Number" />
+              </Item>
+            </Form>
+          </Card>
+
+          <Card style={{borderWidth:0,borderColor:'transparent'}}>
+            <CardItem header>
+              <H3>Shipping Address</H3>
+            </CardItem>
+            <Form>
+              <Item stackedLabel  style={{marginBottom:20,borderWidth:0}}>
+                <Label note style={{fontWeight:'bold',fontSize:12}}>COUNTRY</Label>
+                <Input placeholder="Country" />
+              </Item>
+              <Item stackedLabel style={{marginBottom:20}}>
+                <Label note style={{fontWeight:'bold',fontSize:12}}>STATE</Label>
+                <Input placeholder="State" />
+              </Item>
+              <Item stackedLabel style={{marginBottom:20}}>
+                <Label note style={{fontWeight:'bold',fontSize:12}}>CITY</Label>
+                <Input placeholder="City" />
+              </Item>
+              <Item stackedLabel last style={{marginBottom:20,borderBottomColor:'transparent'}}>
+                <Label note style={{fontWeight:'bold',fontSize:12}}>ZIP CODE</Label>
+                <Input placeholder="ZIP Code" />
+              </Item>
+            </Form>
+          </Card>
+          <Button full style={{marginTop:20,marginBottom:20}}>
+            <Text>Next</Text>
+            <Icon name="ios-arrow-round-forward"/>
+          </Button>
         </Content>
         
       </Container>     
     )
   }
 }
+
+const styles = StyleSheet.create({
+  StepIndicator:{
+    backgroundColor:'#F1F1F1',
+    padding:10
+  }
+})

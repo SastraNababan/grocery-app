@@ -6,8 +6,10 @@ import Swiper from './Swiper'
 import SwiperProductThumb from './SwiperProductThumb'
 import Grid from './Grid'
 import GridProductThumb from'./GridProductThumb'
+import CheckoutStep from './CheckoutStep'
 
 export {
+  CheckoutStep,
   DrawerMenu,
   FooterTab,
   Panel,

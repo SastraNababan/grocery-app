@@ -26,7 +26,7 @@ const routerConfig ={
 const Drawer = DrawerNavigator(
   routerConfig,
   {
-  initialRouteName: "CartScreen",
+  initialRouteName: "CheckoutScreen",
   contentComponent: DrawerMenu,
   contentOptions: {
     activeTintColor: '#e91e63',
