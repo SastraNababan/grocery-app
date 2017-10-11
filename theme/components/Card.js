@@ -10,7 +10,7 @@ export default (variables = variable) => {
       elevation: null
     },
     marginVertical: 5,
-    marginHorizontal: 2,
+    marginHorizontal: 5,
     flex: 1,
     borderWidth: variables.borderWidth,
     borderRadius: 2,

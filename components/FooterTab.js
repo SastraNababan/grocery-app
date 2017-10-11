@@ -9,7 +9,7 @@ import {
 
 export default () => (
   <FooterTab>
-    <Button active>
+    <Button>
       <Icon name="ios-home"/>
       <Text bold>Home</Text>
     </Button>

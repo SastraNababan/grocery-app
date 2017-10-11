@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View,Image,StyleSheet } from 'react-native'
+import { View,Image,StyleSheet,StatusBar } from 'react-native'
 import {Container,
   Header,
   Content,
@@ -35,6 +35,10 @@ export default class OrderSuccessScreen extends Component {
     
     return (
       <Container>
+        <StatusBar
+          backgroundColor="blue"
+          barStyle="light-content"
+        />
         <Header searchBar rounded hasTabs>
           <Left>
             <Button transparent onPress={ () => navigate('OrderSummaryScreen')}>
@@ -48,7 +52,7 @@ export default class OrderSuccessScreen extends Component {
         </Header>
           <View style={{flex:1,justifyContent:'center',alignItems:'center',padding:10}}>
             <Image source={require('../assets/order-success-icon.png')} />
-            <H3 style={{textAlign:'center',fontWeight:'bold',marginTop:20,marginBottom:20}}>Congratulation Your order is accepted</H3>
+            <H3 style={{textAlign:'center',fontWeight:'bold',marginTop:20,marginBottom:20}}>Congratulation Your order is accepted.</H3>
             <Text style={{textAlign:'center'}}>We will send you notification when the goods delivered</Text>
             <Button style={{alignSelf:'center',marginTop:20}}><Text bold>Keep Shooping</Text></Button>
           </View>

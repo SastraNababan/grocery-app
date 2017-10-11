@@ -1,32 +1,62 @@
 import React, { Component } from 'react';
-import { View,FlatList,Image,Dimensions,StyleSheet } from 'react-native';
-import { Container, Header, Content, Card, CardItem, Body, Text,Thumbnail,Button,Icon,Left,Right } from 'native-base';
+import { View,FlatList,Image,Dimensions,StyleSheet,TouchableOpacity } from 'react-native';
+import { Container,
+  Header,
+  Content,
+  Card,
+  CardItem,
+  Body,
+  Text,
+  Thumbnail,
+  Button,
+  Icon,
+  Left,
+  Right,
+  Spinner,
+  Footer 
+} from 'native-base';
 // import ResponsiveImage from 'react-native-responsive-image';
 // import FitImage from 'react-native-fit-image'
 
-const {width, height, scale} = Dimensions.get("window"),
-vw = width / 100,
-vh = height / 100,
-vmin = Math.min(vw, vh),
-vmax = Math.max(vw, vh);
+const {width, height, scale} = Dimensions.get("window")
+const productWidth = (width - 45) / 2
+const currencySymbol="$ "
 
 class ProductGrid extends Component {
+  state={
+    products : {},
+    fetching:false
+  }
+
+  componentDidMount () {
+    // simulate fetch products with delay
+    this.setState({fetching:true})
+    setTimeout(() => {
+      this.setState({products:this.props.products})
+      this.setState({fetching:false})
+    },500)
+  }
+  
   // state = {selected: (new Map(): Map<string, boolean>)};
-  _renderItem = (item) =>(<ProductItem post={item}  />)
+  _renderItem = (item) =>(<ProductItem post={item} navigate={this.props.navigate}   />)
   _keyExtractor = (item,index) => item.id
   
   render() {
+    if (this.state.fetching){
+      return( <Spinner/>)
+    }
     return (
-     <View>
-      <FlatList
-        data={_.values(this.props.products)}
-        numColumns={2}
-        horizontal={false}
-        renderItem={this._renderItem}
-        keyExtractor={this._keyExtractor}
-        extraData={this.state}
-      />
-     </View> 
+      <View>
+        {/* <Button><Text>Filter</Text></Button> */}
+        <FlatList
+          data={this.state.products}
+          numColumns={2}
+          horizontal={false}
+          renderItem={this._renderItem}
+          keyExtractor={this._keyExtractor}
+          extraData={this.state}
+        />
+      </View>
     );
   }
 }
@@ -38,7 +68,6 @@ class ProductItem extends React.PureComponent {
   state ={
     featuredImage :'',
     categoryName:'cat',
-
   }
   
   componentDidMount() {
@@ -52,54 +81,49 @@ class ProductItem extends React.PureComponent {
     // this.props.onPressItem(this.props.id);
   };
 
+  productDetail(navigate,product){
+    navigate('ProductScreen',{product:product})
+  }
+
   render() {
-    const {title,price,picture}=this.props.post.item
+    const {title,price,picture,unitSize}=this.props.post.item
+    let priceDisplay = currencySymbol + price 
+    if (unitSize != undefined){
+      priceDisplay = priceDisplay + ' / ' + unitSize
+    }
+
     return (
-    <Card style={{flex: 1}}>
-      <CardItem>
-        <Body>
-          {/* source={{uri: 'http://urbanintel.com.au/wp-content/uploads/2015/03/placeholder-square.jpg',isStatic:true}}  */}
-          {/* source={require('../assets/placeholder.png')} */}
-          {/* <ResponsiveImage source={{uri: picture}} initWidth="180" initHeight="180"/> */}
-          {/* <FitImage
-            source={{ uri: picture }}
-            style={styles.fitImage}
-            originalWidth={400}
-            originalHeight={400}
-            resizeMode="contain"
-          /> */}
-          <Image  
-            source={{uri:picture}}
-            style={styles.productItem} 
-          /> 
-          <Text style={styles.productTitle}>{title}</Text>
-          <Text style={styles.productPrice}>{price}</Text>
-        </Body>
-      </CardItem>
-    </Card>
-      
+      <TouchableOpacity style={{flex: 1}} onPress={ () => this.productDetail(this.props.navigate,this.props.post.item)}>
+        <Card>
+          <CardItem>
+            <Body>
+              <Image  
+                source={{uri:picture}}
+                style={styles.productItem} 
+              /> 
+              <Text style={styles.productTitle}>{title}</Text>
+              <Text style={styles.productPrice}>{priceDisplay}</Text>
+            </Body>
+          </CardItem>
+        </Card>
+      </TouchableOpacity>
     )
   }
 }
 
 var styles = StyleSheet.create({
-  fitImage: {
-    borderRadius: 20,
-  },
-  fitImageWithSize: {
-    height: 100,
-    width: 30,
-  },
   productItem: {
-    width: 160,
-    height:160,
+    width: productWidth,
+    height:productWidth,
     alignSelf:'center',
   },
   productTitle:{
-    fontWeight:'700',
+    marginBottom:5
   },
   productPrice:{
-
+    fontSize:14,
+    fontWeight:'700',
+    marginBottom:20
   }
 });
  

@@ -6,6 +6,7 @@ import {Container,
   Body,
   Text,
   H1,
+  H3,
   Button,
   Tab,
   Tabs,
@@ -26,16 +27,26 @@ import {sampleAction} from '../store/actions'
 import {
   ProductGrid,
   FooterTab,
+  QuantityInput
 } from '../components'
 import theme from '../theme/variables'
 import products from '../database/products'
+const {width, height, scale} = Dimensions.get("window")
+const productWidth = (width - 45) 
+const currencySymbol="$ "
 
-class ShopScreen extends Component {
+class ProductScreen extends Component {
   state = {  }
   render() {
     const dim=Dimensions.get('screen')
     const {scale,height,width,fontScale} = dim
     const {navigate} = this.props.navigation;
+    const {id,title,price,unitSize,picture,description} = this.props.navigation.state.params.product
+    let priceDisplay = currencySymbol + price 
+    if (unitSize != undefined){
+      priceDisplay = priceDisplay + ' / ' + unitSize
+    }
+    console.log(picture);
     return (
       <Container>
         <Header searchBar rounded hasTabs>
@@ -56,22 +67,27 @@ class ShopScreen extends Component {
             </Button>
           </Right>
         </Header>
-          {/* <Tabs initialPage={0} renderTabBar={()=> <ScrollableTab />}>
-            {this.renderCategoriesTab(categories)}
-          </Tabs>  
-           */}
-          <Tabs initialPage={0} style={{backgroundColor:theme.brandPrimary}} renderTabBar={()=> <ScrollableTab />}>
-            <Tab heading={products.cat1.name}>
-              {<ProductGrid products={products.cat1.products} navigate={navigate}/>}
-            </Tab>
-            <Tab heading={products.cat2.name}>
-              {<ProductGrid products={products.cat2.products} navigate={navigate}/>}
-            </Tab>
-            <Tab heading={products.cat3.name}>
-              {<ProductGrid products={products.cat3.products} navigate={navigate}/>}
-            </Tab>
-          </Tabs>  
+        <Content padder light>
+          <Image  
+            source={{uri:picture}}
+            style={styles.productImage} 
+          /> 
+          <H3 style={styles.productTitle}>{title}</H3>
+          <Text style={styles.productTitle}>{priceDisplay}</Text>
+          <QuantityInput 
+            style={{flex:1}}
+            min={2}
+            max={6}
+            initialValue={5}
+            onChangeText={() => console.log('change')}
+            styleTextInput={{fontSize:24}}
+          />
 
+          <Text style={styles.productDescription}>{description}</Text>
+          
+        </Content>
+        {/* <Button><Text>Add to Cart</Text></Button> */}
+            
         <Footer>
           <FooterTab/>
         </Footer>
@@ -81,13 +97,17 @@ class ShopScreen extends Component {
   }
 }
 const styles={
-  myStyle : {
-    color:'red'
+  productImage: {
+    width: productWidth,
+    height:productWidth,
+    alignSelf:'center',
   },
-  myStyle2 : {
-    fontWeight:'bold',
-    fontSize:20,
+  productTitle:{
+    marginBottom:20
+  },
+  productDescription:{
   }
+  
 }
 
 const mapStateToProps = state => ({
@@ -97,4 +117,4 @@ const mapStateToProps = state => ({
 const mapDispatchToProps ={
   sampleAction,
 }
-export default connect(mapStateToProps,mapDispatchToProps)(ShopScreen);
+export default connect(mapStateToProps,mapDispatchToProps)(ProductScreen);

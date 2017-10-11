@@ -7,6 +7,8 @@ import SwiperProductThumb from './SwiperProductThumb'
 import Grid from './Grid'
 import GridProductThumb from'./GridProductThumb'
 import CheckoutStep from './CheckoutStep'
+import QuantityInput from './QuantityInput'
+
 
 export {
   CheckoutStep,
@@ -17,5 +19,6 @@ export {
   Swiper,
   SwiperProductThumb,
   Grid,
-  GridProductThumb
+  GridProductThumb,
+  QuantityInput
 } 

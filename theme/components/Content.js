@@ -10,6 +10,9 @@ export default (variables = variable) => {
     "NativeBase.Segment": {
       borderWidth: 0,
       backgroundColor: "transparent"
+    },
+    ".light" :{
+      backgroundColor:'#FFFFFF'
     }
   };
 

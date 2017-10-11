@@ -143,7 +143,7 @@ export default {
 
   // Tab
   tabDefaultBg: "#29c137",//"#2874F0",
-  topTabBarTextColor:"#b3c7f9",
+  topTabBarTextColor:"#c6ffcb",
   topTabBarActiveTextColor: "#fff",
   topTabActiveBgColor: platform === "ios" ? "#1569f4" : undefined,
   topTabBarBorderColor: "#fff",

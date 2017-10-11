@@ -23,9 +23,9 @@ class GridProductThumb extends Component {
 				</Text>
 				{/* <Text>${ this.props.prize }</Text> */}
 				{/* <View style={ styles.promotionHolder }>
-								<Text style={[ styles.name, { textDecorationLine: 'line-through' } ]}>${ this.props.regularPrize }</Text>
-								<Text style={ styles.name }> | { this.props.discountPercent }% off</Text>
-				</View> */}
+          <Text style={[ styles.name, { textDecorationLine: 'line-through' } ]}>${ this.props.regularPrize }</Text>
+          <Text style={ styles.name }> | { this.props.discountPercent }% off</Text>
+				</View>  */}
 			</TouchableOpacity>
     )
     }
