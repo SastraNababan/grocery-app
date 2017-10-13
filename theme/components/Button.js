@@ -458,7 +458,7 @@ export default (variables = variable) => {
 				},
 			},
 		},
-
+ 
 		paddingVertical: variables.buttonPadding,
 		// paddingHorizontal: variables.buttonPadding + 10,
 		backgroundColor: variables.btnPrimaryBg,

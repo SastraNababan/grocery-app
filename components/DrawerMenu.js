@@ -50,8 +50,8 @@ const menus = [
 	// 	types: "4",
 	// },
 	{
-		name: "Login",
-		route: "HomeScreen",
+		name: "Account",
+		route: "AccountScreen",
 		icon: "ios-arrow-round-forward",
 		bg: "#4DCAE0",
 	},

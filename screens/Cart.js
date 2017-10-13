@@ -23,7 +23,7 @@ import {Container,
   CardItem
 } from 'native-base'
 
- 
+import {QuantityInput} from '../components' 
 
 export default class CartScreen extends Component {
   state = {  }
@@ -65,23 +65,22 @@ export default class CartScreen extends Component {
             <CardItem>
               <Body>
                 <Grid>
-                  <Col size={1}>
+                  <Col size={2} style={{justifyContent:"center"}}>
                      <Image source={{uri:picture}} style={{width:80,height:80}} />
                   </Col>
-                  <Col size={2} style={{justifyContent:"center"}}>
+                  <Col size={5} style={{justifyContent:"center"}}>
                     <Text> Gala Apples </Text>
                     <Text note> Gala Apples </Text>
                     <Text style={{marginTop:5,fontWeight:'700'}}>$20</Text>
                   </Col>
-                  <Col size={1} style={{justifyContent:"center"}}>
-                    <Text  style={{textAlign:'center'}}>+</Text>
-                    <View style={{}}>
-                      <Text style={{padding:10,backgroundColor:'#F1F1F1',textAlign:"center"}}>1</Text>
-                      {/* <Text note style={{textAlign:'center'}}>Qty</Text> */}
-                    </View>
-                    <Text  style={{textAlign:'center'}}>-</Text>
-                    {/* <Button small><Text>+</Text></Button>
-                    <Button small><Text>-</Text></Button> */}
+                  <Col size={2} style={{justifyContent:"center",alignItems:'center'}}>
+                      <QuantityInput 
+                        orientation="vertical"
+                        initialValue={0}
+                        styleTextInput={{backgroundColor:"transparent",width:35}}
+                        styleButton={{alignItems:"center",borderRadius:50,padding:10}}
+                        onChangeText={() => console.log('cart update')}
+                      />
                   </Col>
                 </Grid>
               </Body>

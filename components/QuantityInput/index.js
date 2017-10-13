@@ -19,30 +19,58 @@ export default class QuantityInput extends Component {
     this.plusButton= this.plusButton.bind(this)
   }
   
-  render() {
+  _renderMinusButton(){
+    return(
+      <TouchableHighlight underlayColor={'#999999'} onPress={this.minusButton} style={[styles.button, this.props.styleButton]}>
+      <Image source={require('./minus.png')} style={this.props.styleImage} />
+      </TouchableHighlight>
+    )
+  }
+  _renderInput(){
     return (
-    <View style={this.props.styleWraper}>
-      <View style={styles.horizontal}>
-        <TouchableHighlight underlayColor={'#999999'} onPress={this.minusButton} style={[styles.button, this.props.styleButton]}>
-          <Image source={require('./minus.png')} style={this.props.styleImage} />
-        </TouchableHighlight>
-        <TextInput
-          style={[styles.textinput, this.props.styleTextInput]}
-          editable={this.props.editable}
-          keyboardType={'numeric'}
-          value={this.state.value}
-          onChangeText={(text) => this.onChangeText(text)}/>
-          <TouchableHighlight underlayColor={'#999999'} onPress={this.plusButton} style={[styles.button, this.props.styleButton]}>
-            <Image source={require('./plus.png')} style={this.props.styleImage} />
-          </TouchableHighlight>
-        {/* <View style={styles.verticle}>
-        </View> */}
-      </View>
-    </View>
+      <TextInput
+      style={[styles.textinput, this.props.styleTextInput]}
+      editable={this.props.editable}
+      keyboardType={'numeric'}
+      value={this.state.value}
+      onChangeText={(text) => this.onChangeText(text)}/>
     )
   }
 
-  minusButton(){
+  _renderPlusButton(){
+    return (
+      <TouchableHighlight underlayColor={'#999999'} onPress={this.plusButton} style={[styles.button, this.props.styleButton]}>
+        <Image source={require('./plus.png')} style={this.props.styleImage} />
+      </TouchableHighlight> 
+    )
+  }
+
+
+  render() {
+    if (this.props.orientation=='vertical') {
+      return (
+        <View style={this.props.styleWraper}>
+          <View style={styles.vertical}>
+            {this._renderPlusButton()}
+            {this._renderInput()}
+            {this._renderMinusButton()}
+          </View>
+        </View>
+      )
+    }
+    return (
+      <View style={this.props.styleWraper}>
+        <View style={styles.horizontal}>
+          {this._renderMinusButton()}
+          {this._renderInput()}
+          {this._renderPlusButton()}
+        </View>
+      </View>
+    )
+
+  }
+
+  plusButton(){
     if(this.state.value != this.props.max){
       var value = (parseInt(this.state.value) + parseInt(this.props.stepsize)).toString();
       this.setState({
@@ -52,7 +80,7 @@ export default class QuantityInput extends Component {
     }
   }
 
-  plusButton(){
+  minusButton(){
     if(this.state.value != this.props.min){
       var value = (parseInt(this.state.value) - parseInt(this.props.stepsize)).toString();
 
@@ -85,7 +113,7 @@ export default class QuantityInput extends Component {
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
-    backgroundColor: '#eeeeee'
+    backgroundColor: '#eeeeee',
   },
   verticle: {
     flexDirection: 'column'
@@ -94,14 +122,16 @@ const styles = StyleSheet.create({
     flexDirection: 'row'
   },
   textinput: {
-    flex:10,
+    // flex:4,
     backgroundColor: '#eeeeee',
     padding: 5,
     textAlign: 'center'
   },
   button: {
+    // flex:2,
     backgroundColor: '#dedede',
-    padding: 5
+    padding: 5,
+    justifyContent:'center'
   },
   image: {
     width: 18,
@@ -116,10 +146,12 @@ QuantityInput.propTypes={
   max : PropTypes.number,
   stepsize:PropTypes.number,
   editable:PropTypes.bool,
+  orientation:PropTypes.string,
   styleWrapper :PropTypes.oneOfType([PropTypes.object, PropTypes.number, PropTypes.array]),
   styleTextInput :PropTypes.oneOfType([PropTypes.object, PropTypes.number, PropTypes.array]),
   styleButton :PropTypes.oneOfType([PropTypes.object, PropTypes.number, PropTypes.array]),
   styleImage :PropTypes.oneOfType([PropTypes.object, PropTypes.number, PropTypes.array]),
+  // iconPlus:PropTypes.node
 }
 
 QuantityInput.defaultProps = {
@@ -130,5 +162,7 @@ QuantityInput.defaultProps = {
   editable:false,
   styleTextInput: styles.textinput,
   styleButton:styles.button,
-  styleImage:styles.image
+  styleImage:styles.image,
+  orientation:'horizontal'
+  // iconPlus:<Image source={require('./minus.png')} style={this.props.styleImage} />
 };

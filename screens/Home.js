@@ -83,7 +83,7 @@ export default class Home extends Component {
     const {navigate} = this.props.navigation
     return (
       <Container>
-        <Header searchBar rounded>
+        <Header>
           <Left>
             <Button transparent onPress={ () => navigate('DrawerOpen')}>
               <Icon name="ios-menu"/>

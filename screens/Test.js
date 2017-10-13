@@ -1,3 +1,5 @@
+/* For test purpose only */
+
 import React, { Component } from 'react'
 import { View,Text } from 'react-native'
 import {QuantityInput} from '../components'
@@ -9,12 +11,13 @@ export default class TestScreen extends Component {
       <View style={{flex:1,alignItems:'center',justifyContent:'center'}}>
         <View style={{width:200,height:50}}>
           <QuantityInput 
-            style={{flex:1}}
+            style={{flex:1,padding:5}}
             min={2}
             max={6}
             initialValue={5}
             onChangeText={() => console.log('change')}
             styleTextInput={{fontSize:24}}
+            styleWrapper={{padding:5}}
           />
         </View>
       </View>

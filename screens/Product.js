@@ -20,7 +20,8 @@ import {Container,
   Footer,
   Spinner,
   Grid,
-  Col
+  Col,
+  Card
 } from 'native-base'
 import { connect } from 'react-redux';
 import {sampleAction} from '../store/actions'
@@ -41,12 +42,21 @@ class ProductScreen extends Component {
     const dim=Dimensions.get('screen')
     const {scale,height,width,fontScale} = dim
     const {navigate} = this.props.navigation;
-    const {id,title,price,unitSize,picture,description} = this.props.navigation.state.params.product
+    // const {id,title,price,unitSize,picture,description} = this.props.navigation.state.params.product
+
+    let title ="Granny Smith Apple"
+    let price ="123"
+    let unitSize ="kg"
+    let picture ="http://res.cloudinary.com/oklae/image/upload/c_scale,w_300/v1507684059/shopping_cart1600_wnscp9.png"
+    let description ="Archidendron pauciflorum, commonly known as Djenkol, Jenkol or Jering is a speci" +
+    "es of flowering tree in the pea family, Fabaceae. It is native to Southeast Asia" +
+    ", where the seeds are a popular dish."
+
     let priceDisplay = currencySymbol + price 
     if (unitSize != undefined){
       priceDisplay = priceDisplay + ' / ' + unitSize
     }
-    console.log(picture);
+
     return (
       <Container>
         <Header searchBar rounded hasTabs>
@@ -67,25 +77,32 @@ class ProductScreen extends Component {
             </Button>
           </Right>
         </Header>
-        <Content padder light>
-          <Image  
-            source={{uri:picture}}
-            style={styles.productImage} 
-          /> 
-          <H3 style={styles.productTitle}>{title}</H3>
-          <Text style={styles.productTitle}>{priceDisplay}</Text>
-          <QuantityInput 
-            style={{flex:1}}
-            min={2}
-            max={6}
-            initialValue={5}
-            onChangeText={() => console.log('change')}
-            styleTextInput={{fontSize:24}}
-          />
-
-          <Text style={styles.productDescription}>{description}</Text>
+        <Content padder >
+          <View style={styles.productPictureWrapper}>
+          
+            <Image  
+              source={{uri:picture}}
+              style={styles.productImage} 
+            /> 
+          </View>
+            <H3 style={styles.productTitle}>{title}</H3>
+            <Text style={styles.productPrice}>{priceDisplay}</Text>
+            
+            
+            <Text style={styles.productDescription}>{description}</Text>
           
         </Content>
+        <QuantityInput 
+              style={{flex:1}}
+              min={2}
+              max={6}
+              initialValue={0}
+              onChangeText={() => console.log('change')}
+              styleTextInput={{fontSize:20,backgroundColor:"#68D572",padding:10}}
+              styleButton={{backgroundColor:"#29C137"}}
+              styleWrapper={{padding:5}}
+
+            />
         {/* <Button><Text>Add to Cart</Text></Button> */}
             
         <Footer>
@@ -97,15 +114,25 @@ class ProductScreen extends Component {
   }
 }
 const styles={
+  productPictureWrapper:{
+    // borderWidth:1,
+    // borderColor:"#CCC",
+    // marginBottom:20
+  },
   productImage: {
     width: productWidth,
     height:productWidth,
     alignSelf:'center',
   },
   productTitle:{
+    // marginBottom:20
+  },
+  productPrice:{
     marginBottom:20
   },
   productDescription:{
+    marginTop:20,
+    marginBottom:20
   }
   
 }
