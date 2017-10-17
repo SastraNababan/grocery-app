@@ -96,6 +96,13 @@ export default class CheckoutScreen extends Component {
               </Item>
             </Form>
           </Card>
+
+          <Card style={{borderWidth:0,borderColor:'transparent'}}>
+            <CardItem header>
+              <H3>Delivery Options</H3>
+            </CardItem>
+          </Card>
+
           <Button onPress={ () => navigate('PaymentScreen')} full style={{marginTop:20,marginBottom:20}}>
             <Text bold>Next</Text>
             <Icon name="ios-arrow-round-forward"/>

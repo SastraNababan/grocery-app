@@ -49,6 +49,33 @@ export default class OrderSummaryScreen extends Component {
         </Header>
         <Content padder>
           <CheckoutStep currentPosition={2}/>
+          
+          <Card>
+            <CardItem header>
+              <H3>Shipping to :</H3>
+            </CardItem>
+            <CardItem>
+              <Body>
+                <Text>Franklin Herna Ozon</Text>
+                <Text>7487 Harvey Point Suite 060, NY</Text>
+              </Body>
+            </CardItem>
+          </Card>
+
+          <Card>
+            <CardItem header>
+              <H3>Payment Details :</H3>
+            </CardItem>
+             
+          </Card>
+
+          <Card>
+            <CardItem header>
+              <H3>Your Orders :</H3>
+            </CardItem>
+            
+          </Card>
+           
           <Button onPress={ () => navigate('OrderSuccessScreen')} full style={{marginTop:20,marginBottom:20}}>
             <Text bold>Submit Order</Text>
             <Icon name="ios-arrow-round-forward"/>

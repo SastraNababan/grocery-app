@@ -18,19 +18,49 @@ import {Container,
   Title,
   Footer,
   Grid,
+  Row,
   Col,
   Card,
   CardItem
 } from 'native-base'
 
 import {QuantityInput} from '../components' 
+const picture = "http://res.cloudinary.com/oklae/image/upload/c_scale,w_300/v1507300098/grocery-app/promo/apple.jpg"
+
+
+const CartItem = ()=> (
+  <View style={{backgroundColor:"#FFF",marginBottom:5}}>
+  <Grid style={{padding:10}}>
+    <Col size={3} style={{justifyContent:"center"}}>
+      <Image source={{uri:picture}} style={{width:80,height:80}} />
+    </Col>
+    <Col size={7} style={{justifyContent:"center"}}>
+      <Text>Olivia Burton Exclusive Floral Big Dial Watch </Text>
+      <Text note> 1kg (approx 6 to 7 nos ) </Text>
+      <Row style={{marginTop:10}}>
+        <Col> 
+          <Text style={{marginTop:5,fontWeight:'700'}}>$20</Text>
+        </Col>
+        <Col style={{alignItems:'flex-end'}}>
+          <QuantityInput 
+            orientation="horizontal"
+            initialValue={0}
+            styleTextInput={{backgroundColor:"transparent",width:25}}
+            styleButton={{alignItems:"center",borderRadius:50,padding:10}}
+            onChangeText={() => console.log('cart update')}
+            styleImage={{width:10,height:10}}
+          />
+        </Col>
+      </Row>
+    </Col>
+  </Grid>
+  </View>
+)
 
 export default class CartScreen extends Component {
   state = {  }
   render() {
     const {navigate} = this.props.navigation;
-    let picture = "http://res.cloudinary.com/oklae/image/upload/c_scale,w_300/v1507300098/grocery-app/promo/apple.jpg"
-    
     return (
       <Container>
         <Header searchBar rounded hasTabs>
@@ -52,43 +82,14 @@ export default class CartScreen extends Component {
           </Right>
         </Header>
         <Content padder>
-          <Grid style={{backgroundColor:"#F1F1F1",padding:8,marginBottom:15}}>
-            <Col>
-              <Text>Total Price</Text>
-            </Col>
-            <Col>
-              <Text>$32.5</Text>
-            </Col>
-          </Grid>
-
-          <Card>
-            <CardItem>
-              <Body>
-                <Grid>
-                  <Col size={2} style={{justifyContent:"center"}}>
-                     <Image source={{uri:picture}} style={{width:80,height:80}} />
-                  </Col>
-                  <Col size={5} style={{justifyContent:"center"}}>
-                    <Text> Gala Apples </Text>
-                    <Text note> Gala Apples </Text>
-                    <Text style={{marginTop:5,fontWeight:'700'}}>$20</Text>
-                  </Col>
-                  <Col size={2} style={{justifyContent:"center",alignItems:'center'}}>
-                      <QuantityInput 
-                        orientation="vertical"
-                        initialValue={0}
-                        styleTextInput={{backgroundColor:"transparent",width:35}}
-                        styleButton={{alignItems:"center",borderRadius:50,padding:10}}
-                        onChangeText={() => console.log('cart update')}
-                      />
-                  </Col>
-                </Grid>
-              </Body>
-            </CardItem>
-          </Card>
- 
+          <CartItem/>
+          <CartItem/>
+          <CartItem/>
         </Content>
-        <Button success full><Text>Checkout</Text></Button>
+        <View style={{backgroundColor:"#FFF",padding:8}}>
+          <Text style={{textAlign:'center',fontWeight:'700'}}>4 Items / Total Cost $ 1234</Text>
+        </View>
+        <Button onPress={() => navigate('CheckoutScreen')} success full><Text>Checkout</Text></Button>
       </Container>     
     )
   }

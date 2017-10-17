@@ -54,7 +54,9 @@ export default class OrderSuccessScreen extends Component {
             <Image source={require('../assets/order-success-icon.png')} />
             <H3 style={{textAlign:'center',fontWeight:'bold',marginTop:20,marginBottom:20}}>Congratulation Your order is accepted.</H3>
             <Text style={{textAlign:'center'}}>We will send you notification when the goods delivered</Text>
-            <Button style={{alignSelf:'center',marginTop:20}}><Text bold>Keep Shooping</Text></Button>
+            <Button style={{alignSelf:'center',marginTop:20}} onPress={ () => navigate('HomeScreen')}>
+              <Text bold>Keep Shooping</Text>
+            </Button>
           </View>
       </Container>     
     )

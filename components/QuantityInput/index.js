@@ -29,11 +29,11 @@ export default class QuantityInput extends Component {
   _renderInput(){
     return (
       <TextInput
-      style={[styles.textinput, this.props.styleTextInput]}
-      editable={this.props.editable}
-      keyboardType={'numeric'}
-      value={this.state.value}
-      onChangeText={(text) => this.onChangeText(text)}/>
+        style={[styles.textinput, this.props.styleTextInput]}
+        editable={this.props.editable}
+        keyboardType={'numeric'}
+        value={this.state.value}
+        onChangeText={(text) => this.onChangeText(text)}/>
     )
   }
 

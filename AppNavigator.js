@@ -11,18 +11,11 @@ import CheckoutScreen from './screens/Checkout'
 import PaymentScreen from './screens/Payment'
 import SignupScreen from './screens/Signup'
 import OrderSummaryScreen from './screens/OrderSummary'
+import OrderSuccessScreen from './screens/OrderSuccess'
 import TestScreen from './screens/Test'
 
 import {DrawerMenu} from './components/'
-
-// const Navigator = StackNavigator(routerConfig,
-//   {
-//     initialRouteName: 'DrawerScreen',
-//     headerMode: 'none', 
-//     mode: Platform.OS === 'ios' ? 'modal' : 'card',
-//   }
-// );
-
+ 
 const routerConfig ={
   CartScreen: { screen: CartScreen},
   CheckoutScreen: { screen: CheckoutScreen},
@@ -30,18 +23,18 @@ const routerConfig ={
   LoginScreen: { screen: LoginScreen},
   AccountScreen: { screen: AccountScreen},
   OrderSummaryScreen: { screen: OrderSummaryScreen},
+  OrderSuccessScreen:{screen :OrderSuccessScreen},
   PaymentScreen: { screen: PaymentScreen},
   ProductScreen: { screen: ProductScreen},
   ShopScreen: { screen: ShopScreen},
   SignupScreen: { screen: SignupScreen},
   TestScreen: { screen: TestScreen},
-  
 }
 
 const Drawer = DrawerNavigator(
   routerConfig,
   {
-  initialRouteName: "AccountScreen",
+  initialRouteName: "HomeScreen",
   contentComponent: DrawerMenu,
   contentOptions: {
     activeTintColor: '#e91e63',
