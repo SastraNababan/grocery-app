@@ -13,7 +13,9 @@ import { Container,
   Left,
   Right,
   Spinner,
-  Footer 
+  Footer,
+  Grid,
+  Col
 } from 'native-base';
 // import ResponsiveImage from 'react-native-responsive-image';
 // import FitImage from 'react-native-fit-image'
@@ -46,16 +48,38 @@ class ProductGrid extends Component {
       return( <Spinner/>)
     }
     return (
-      <View>
-        {/* <Button><Text>Filter</Text></Button> */}
-        <FlatList
-          data={this.state.products}
-          numColumns={2}
-          horizontal={false}
-          renderItem={this._renderItem}
-          keyExtractor={this._keyExtractor}
-          extraData={this.state}
-        />
+      <View style={{flex:1}}>
+        <View style={{backgroundColor:"#FFF",borderBottomColor:'#F1F1F1',borderBottomWidth:1,borderTopWidth:0,flex:1}}>
+          <Grid>
+            <Col size={4} style={{borderRightWidth:1,borderRightColor:'#F1F1F1',alignItems:'center',justifyContent:'center'}}>
+              <Button transparent small>
+                <Icon name="logo-buffer"/>
+                <Text>Sort</Text> 
+              </Button>
+            </Col>
+            <Col size={4} style={{borderRightWidth:1,borderRightColor:'#F1F1F1',alignItems:'center',justifyContent:'center'}}>
+              <Button transparent small>
+                <Icon name="ios-funnel"/>
+                <Text>Filter</Text> 
+              </Button>
+            </Col>
+            <Col size={2} style={{alignItems:'center',justifyContent:'center'}}>
+              <Button transparent small>
+                <Icon name="ios-keypad"/>
+              </Button>
+            </Col>
+          </Grid>
+        </View>
+        <View style={{flex:9,padding:2,backgroundColor:"#F1F1F1"}}>
+          <FlatList
+            data={this.state.products}
+            numColumns={2}
+            horizontal={false}
+            renderItem={this._renderItem}
+            keyExtractor={this._keyExtractor}
+            extraData={this.state}
+          />
+        </View>    
       </View>
     );
   }

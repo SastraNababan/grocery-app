@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {View, StyleSheet, Dimensions, ScrollView,Image} from 'react-native'
+import {View, StyleSheet, Dimensions, ScrollView,Image,StatusBar} from 'react-native'
 import { DrawerNavigator } from 'react-navigation';
 import {
   Header,
@@ -25,12 +25,11 @@ import {
   GridProductThumb
 } from '../components'
 
-import {promo,categories} from '../database'
+import database from '../database'
 
 const {width, height} = Dimensions.get('window')
 const MyNavScreen = ({ navigation, banner }) => (
   <ScrollView style={styles.container}>
-    {/* <SampleText>{banner}</SampleText> */}
     <Button
       onPress={() => navigation.navigate('DrawerOpen')}
       title="Open drawer"
@@ -83,7 +82,7 @@ export default class Home extends Component {
     const {navigate} = this.props.navigation
     return (
       <Container>
-        <Header>
+        <Header backgroundColor='blue' androidStatusBarColor={'blue'}>
           <Left>
             <Button transparent onPress={ () => navigate('DrawerOpen')}>
               <Icon name="ios-menu"/>
@@ -110,11 +109,11 @@ export default class Home extends Component {
 
           <ScrollView>
             <Card>
-              {this.renderPromo(promo)}
+              {this.renderPromo(database.promo)}
             </Card>
 
             <Card>
-              {this.renderCategories(categories)}
+              {this.renderCategories(database.categories)}
             </Card>
           </ScrollView>
 

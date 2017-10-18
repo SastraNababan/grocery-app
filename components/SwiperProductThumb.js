@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
   productImage: {
     width: prdWidth,
     height: prdWidth,
-    borderWidth: 0.5, borderColor: theme.listBorderColor
+    // borderWidth: 0.5, borderColor: theme.listBorderColor
   },
   name: {
     marginTop: 6,

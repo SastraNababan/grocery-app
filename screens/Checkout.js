@@ -23,17 +23,36 @@ import {Container,
   CardItem,
   Form,
   Label,
-  H3
+  H3,
+  ListItem,
+  CheckBox
 } from 'native-base'
 import {CheckoutStep} from '../components'
 import theme from '../theme/variables'
 
 export default class CheckoutScreen extends Component {
-  state = {  }
+  state = { 
+    delivery_1:false,
+    delivery_2:true,
+    delivery_3:false,
+
+   }
+  
+   _selectDelivery(option){
+     value=! this.state[option]
+     newState={}
+     newState[option]=value
+     this.setState({
+      delivery_1:false,
+      delivery_2:false,
+      delivery_3:false,
+     })
+     this.setState(newState)
+  }
+
   render() {
     const {navigate} = this.props.navigation;
     let picture = "http://res.cloudinary.com/oklae/image/upload/c_scale,w_300/v1507300098/grocery-app/promo/apple.jpg"
-    
     return (
       <Container>
         <Header searchBar rounded hasTabs>
@@ -100,7 +119,26 @@ export default class CheckoutScreen extends Component {
           <Card style={{borderWidth:0,borderColor:'transparent'}}>
             <CardItem header>
               <H3>Delivery Options</H3>
-            </CardItem>
+            </CardItem>  
+              <ListItem>
+                <CheckBox checked={this.state.delivery_1} onPress={() => this._selectDelivery('delivery_1')}/>
+                  <Body>
+                    <Text>Standar (1 Day )</Text>
+                  </Body>
+              </ListItem>
+              <ListItem>
+                <CheckBox checked={this.state.delivery_2} onPress={() => this._selectDelivery('delivery_2')}/>
+                  <Body>
+                    <Text>Express ( 6 Hours )</Text>
+                  </Body>
+              </ListItem>
+              <ListItem>
+                <CheckBox checked={this.state.delivery_3} onPress={() => this._selectDelivery('delivery_3')}/>
+                  <Body>
+                    <Text>Premium ( 3 Hours )</Text>
+                  </Body>
+              </ListItem>
+            
           </Card>
 
           <Button onPress={ () => navigate('PaymentScreen')} full style={{marginTop:20,marginBottom:20}}>

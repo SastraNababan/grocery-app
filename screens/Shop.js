@@ -28,7 +28,7 @@ import {
   FooterTab,
 } from '../components'
 import theme from '../theme/variables'
-import products from '../database/products'
+import database from '../database'
 
 class ShopScreen extends Component {
   state = {  }
@@ -56,25 +56,44 @@ class ShopScreen extends Component {
             </Button>
           </Right>
         </Header>
-          {/* <Tabs initialPage={0} renderTabBar={()=> <ScrollableTab />}>
-            {this.renderCategoriesTab(categories)}
-          </Tabs>  
-           */}
+        {/* <Content> */}
           <Tabs initialPage={0} style={{backgroundColor:theme.brandPrimary}} renderTabBar={()=> <ScrollableTab />}>
-            <Tab heading={products.cat1.name}>
-              {<ProductGrid products={products.cat1.products} navigate={navigate}/>}
+            <Tab heading={database.cat1.name}>
+              {<ProductGrid products={database.cat1.products} navigate={navigate}/>}
             </Tab>
-            <Tab heading={products.cat2.name}>
-              {<ProductGrid products={products.cat2.products} navigate={navigate}/>}
+            <Tab heading={database.cat2.name}>
+              {<ProductGrid products={database.cat2.products} navigate={navigate}/>}
             </Tab>
-            <Tab heading={products.cat3.name}>
-              {<ProductGrid products={products.cat3.products} navigate={navigate}/>}
+            <Tab heading={database.cat3.name}>
+              {<ProductGrid products={database.cat3.products} navigate={navigate}/>}
             </Tab>
           </Tabs>  
-
-        <Footer>
+          
+         {/* </Content>  */}
+         {/* <View style={{backgroundColor:"#FFF",padding:10,flex:1}}> */}
+            {/* <Grid>
+              <Col size={4}>
+                <Button transparent>
+                  <Icon name="logo-buffer"/>
+                  <Text>Sort</Text> 
+                </Button>
+              </Col>
+              <Col size={4}>
+                <Button transparent>
+                  <Icon name="ios-funnel"/>
+                  <Text>Filter</Text> 
+                </Button>
+              </Col>
+              <Col size={2}>
+                <Button transparent>
+                  <Icon name="logo-windows"/>
+                </Button>
+              </Col>
+            </Grid> */}
+          {/* </View> */}
+       {/* <Footer>
           <FooterTab/>
-        </Footer>
+        </Footer> */}
       </Container>
       
     )

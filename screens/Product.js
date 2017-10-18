@@ -93,17 +93,15 @@ class ProductScreen extends Component {
           
         </Content>
         <QuantityInput 
-              style={{flex:1}}
-              min={2}
-              max={6}
-              initialValue={0}
-              onChangeText={() => console.log('change')}
-              styleTextInput={{fontSize:20,backgroundColor:"#68D572",padding:10}}
-              styleButton={{backgroundColor:"#29C137"}}
-              styleWrapper={{padding:5}}
-
-            />
-        {/* <Button><Text>Add to Cart</Text></Button> */}
+            style={{flex:1,alignItems:'center',justifyContent:'center'}}
+            min={0}
+            initialValue={0}
+            onChangeText={() => console.log('change')}
+            styleTextInput={{fontSize:20,backgroundColor:"#68D572",padding:10,flex:1}}
+            styleButton={{backgroundColor:"#29C137",padding:10}}
+            styleWrapper={{padding:5}}
+            orientation="horizontal"
+        />
             
         <Footer>
           <FooterTab/>
